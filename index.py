@@ -1,59 +1,65 @@
 
 # Import all from fasthtml.common
-#### YOUR CODE HERE
+from fasthtml.common import *
 
 # Import pandas
-#### YOUR CODE HERE
+import pandas as pd
 
 # Initialize a fasthtml app
-#### YOUR CODE HERE
+app, route = fast_app()
 
 # Using pandas, read in he 'ds_event.csv' file
-#### YOUR CODE HERE
+df = pd.read_csv('ds_events.csv')
 
 # Define a route for the landing page
 # that uses a `get` method
-#### YOUR CODE HERE
+@app.route("/")
+def get():
 
     # Generate the raw html for the pandas table
     # with the pandas .to_html method
-    #### YOUR CODE HERE
+    table_html = df.to_html()
 
     # Convert the raw html to a fasthtml object
     # using the fasthtml NotStr function
-    #### YOUR CODE HERE
+    table = NotStr(table_html)
 
     # Using the `Titled` fasthtml function
     # Set the title of the page to an informative
     # title for the data, and pass the fasthtml table
     # as the second argument
     # Return the result
-    #### YOUR CODE HERE
+    return Titled(
+        "Data Science Events!",
+        table,
+        )
 
 # Define a route with a dynamic
 # `keyword` variable that can be passed
 # to the routing function
 # Include a `date` query parameter
-#### YOUR CODE HERE
+@app.route("/search/{keyword}")
+def get(keyword:str, date:str=None):
 
     # Filter the pandas dataframe to rows where the 
     # `description` column contains the `keyword`
     # received as an argument to this function
-    #### YOUR CODE HERE
+    frame = df[df.description.str.lower().str.contains(keyword)]
 
-    # Check if date is not falsey
-    #### YOUR CODE HERE
+    # Check if date is "truthy"
+    if date:
+
         # Filter the dataframe down to rows
         # where the `date` column is equal to the date
         # query parameter
-        #### YOUR CODE HERE
+        frame = frame[frame.date == date]
     
     # Convert the filtered dataframe to
     # a list of dictionaries
-    #### YOUR CODE HERE
+    json = frame.to_dict(orient='records')
 
     # Return the data as a json response
-    #### YOUR CODE HERE
+    return JSONResponse(json)
 
 
 # Keep this line unchanged
