@@ -9,7 +9,7 @@ Follow the comments in `index.py` to develop a simple FastHTML API.
 * conda env create -f environment.yml
 
 
-2. Activate it (assuming evironment was created successfully):
+2. Activate it (assuming environment was created successfully):
 * conda activate fasthtml-env
 
 **note: If you need to update the environment after changing environment.yml -> conda env update -f environment.yml --prune
