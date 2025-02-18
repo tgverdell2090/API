@@ -2,7 +2,7 @@
 
 Follow the comments in `index.py` to develop a simple FastHTML API.
 
-##Instructions on how to run the API (Local Installation)
+## Instructions on how to run the API (Local Installation)
 ###Note: The example uses Anaconda
 
 1. Create the Conda Environment:
