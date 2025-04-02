@@ -23,4 +23,4 @@ Follow the comments in `index.py` to develop a simple FastHTML API.
 * This should be a localhost URL -> ex. http://localhost:5001
 
 
-!COMPLETE - You shoud be able to see the dataframe in you browser
+!COMPLETE - You shoud be able to see the dataframe in your browser
